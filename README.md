@@ -137,7 +137,7 @@ Then visit `http://localhost:8501` in your browser.
 
 ## 📊 Sample Datasets
 
-Two sample datasets are included:
+sample datasets are :
 
 - `iris.csv` - Classification (predicting flower species)
 - `air.csv` - Regression (predicting air quality metrics)
