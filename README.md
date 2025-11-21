@@ -138,18 +138,15 @@ Then visit `http://localhost:8501` in your browser.
 ## � Screenshots
 
 ### Main Interface
+*Clean and intuitive interface for uploading and configuring your data*
+
 ![AutoML Main Interface](screenshot/s1.png)
-*Clean and intuitive interface for uploading and configuring your data*
-
 ![AutoML Main Interface](screenshot/s2.png)
-*Clean and intuitive interface for uploading and configuring your data*
 ![AutoML Main Interface](screenshot/s3.png)
-*Clean and intuitive interface for uploading and configuring your data*
 ![AutoML Main Interface](screenshot/s4.png)
-*Clean and intuitive interface for uploading and configuring your data*
 
 
-## �📊 Sample Datasets
+## 📊 Sample Datasets
 
 sample datasets are :
 
