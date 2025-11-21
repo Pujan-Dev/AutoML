@@ -21,8 +21,57 @@ import plotly.graph_objects as go
 import warnings
 warnings.filterwarnings('ignore')
 
-st.set_page_config(page_title="AutoML CSV Evaluator", layout="wide")
-st.title("🤖 Advanced AutoML CSV Evaluator")
+st.set_page_config(page_title="AutoML CSV Evaluator", layout="wide", page_icon="🤖")
+
+# --- Theme toggle and dynamic CSS for Light/Dark modes ---
+def get_theme_css(theme: str) -> str:
+    """Return a small CSS block for the requested theme."""
+    if theme == "Dark":
+        return """
+        <style>
+        .block-container{padding:1.2rem 1.8rem; background:transparent}
+        .stApp{background:linear-gradient(180deg,#071027 0%, #0b1220 100%); color: #e6eef6}
+        .sidebar .block-container{background:#071428; border-radius:10px; padding:1rem;}
+        h1 {color:#9ad1ff; margin-bottom:0.15rem;}
+        p.subtitle {color:#a9bdcf; margin-top:0; margin-bottom:0.6rem;}
+        .stButton>button {background:#0b66d0; color: white; border-radius:8px;}
+        .stMetric>div>div>div{color:#e6eef6}
+        /* Table/df adjustments */
+        .stDataFrame, .css-1lcbmhc.egzxvld0 {background:rgba(255,255,255,0.03);}
+        a {color:#7ec8ff}
+        </style>
+        """
+    # Light theme (default)
+    return """
+    <style>
+    .block-container{padding:1.5rem 2rem;}
+    .stApp{background:linear-gradient(180deg,#f7fbff 0%, #ffffff 100%);} 
+    .sidebar .block-container{background:#fbfcfe; border-radius:10px; padding:1rem;}
+    h1 {color:#064e8a; margin-bottom:0.15rem;}
+    p.subtitle {color:#5b6b7a; margin-top:0; margin-bottom:0.6rem;}
+    .stButton>button {background:#0b66d0; color: white; border-radius:8px;}
+    .css-1lcbmhc.egzxvld0 {padding:0.25rem 0.5rem;} /* best-effort, may vary by streamlit version */
+    </style>
+    """
+
+# Theme selector in the sidebar
+st.sidebar.header("🎨 Appearance")
+if 'theme' not in st.session_state:
+    # Default to system-like preference; prefer Dark when unknown
+    st.session_state['theme'] = 'Dark'
+
+theme_choice = st.sidebar.radio("Theme", ["Light", "Dark"], index=0 if st.session_state['theme']=='Light' else 1)
+st.session_state['theme'] = theme_choice
+
+# Inject the selected theme CSS
+st.markdown(get_theme_css(theme_choice), unsafe_allow_html=True)
+
+with st.container():
+    left, center, right = st.columns([1, 6, 1])
+    with center:
+        st.markdown("<h1 style='text-align:center'>🤖 AutoML CSV Evaluator</h1>", unsafe_allow_html=True)
+        st.markdown("<p class='subtitle' style='text-align:center'>Quickly evaluate and compare models on CSV data — clean, train, compare, export.</p>", unsafe_allow_html=True)
+
 st.markdown("---")
 
 # ============================================

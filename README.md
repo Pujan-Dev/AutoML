@@ -1,6 +1,11 @@
 
 # 🤖 Advanced AutoML CSV Evaluator
 
+[![GitHub](https://img.shields.io/badge/GitHub-Pujan--Dev-black?style=flat-square&logo=github)](https://github.com/Pujan-Dev)
+[![Portfolio](https://img.shields.io/badge/Portfolio-neupanepujan.com.np-blue?style=flat-square&logo=globe)](https://neupanepujan.com.np)
+[![Python](https://img.shields.io/badge/Python-3.8+-blue?style=flat-square&logo=python)](https://www.python.org)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red?style=flat-square&logo=streamlit)](https://streamlit.io)
+
 An intelligent, end-to-end machine learning automation tool that handles **any kind of CSV data** with automatic cleaning, preprocessing, model selection, and evaluation.
 
 ## ✨ Key Features
@@ -54,10 +59,27 @@ An intelligent, end-to-end machine learning automation tool that handles **any k
 
 ## 🚀 Quick Start
 
-### Installation
+### Prerequisites
+- Python 3.8 or higher
+- pip or conda package manager
 
+### Installation (Local)
+
+**Option 1: Using pip**
 ```bash
-pip install streamlit pandas numpy scikit-learn plotly
+# Clone the repository
+git clone https://github.com/Pujan-Dev/AutoML.git
+cd AutoML
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+**Option 2: Using conda**
+```bash
+conda create -n automl python=3.9
+conda activate automl
+pip install -r requirements.txt
 ```
 
 ### Running the App
@@ -66,17 +88,52 @@ pip install streamlit pandas numpy scikit-learn plotly
 streamlit run main.py
 ```
 
-The app will open at `http://localhost:8501`
+The app will automatically open at `http://localhost:8501` in your browser.
+
+### Running with Docker
+
+```bash
+# Build the Docker image
+docker build -t automl:latest .
+
+# Run the container
+docker run -p 8501:8501 automl:latest
+```
+
+Then visit `http://localhost:8501` in your browser.
 
 ## 📋 How to Use
 
-1. **Upload CSV** - Use the sidebar file uploader to select your CSV file
-2. **Preview Data** - View dataset information (rows, columns, missing values, data types)
-3. **Select Target** - Choose the column you want to predict
-4. **Automatic Detection** - The app automatically detects if it's classification or regression
-5. **Run AutoML** - Click "🚀 Run AutoML" to start training
-6. **View Results** - See model comparison table and performance visualizations
-7. **Download** - Export results as CSV for further analysis
+### Step-by-Step Guide
+
+1. **Upload CSV** 
+   - Use the sidebar file uploader to select your CSV file
+   - Supports any tabular CSV format
+
+2. **Preview Data** 
+   - View dataset information (rows, columns, missing values, data types)
+   - Expand the "Dataset Preview" section to see sample rows
+
+3. **Configure Data Options** 
+   - For large datasets (>1000 rows), choose to sample or select columns
+   - Remove unnecessary columns from analysis
+
+4. **Select Target Column** 
+   - Choose the column you want to predict
+   - The app automatically detects classification vs regression
+
+5. **Run AutoML** 
+   - Click the "🚀 Run AutoML" button to start training
+   - Watch the progress as models are trained sequentially
+
+6. **Review Results** 
+   - See model comparison table with all metrics
+   - View performance visualization chart
+   - Identify the best model (highlighted with 🏆)
+
+7. **Export Results** 
+   - Download detailed results as CSV
+   - View comprehensive summary report with recommendations
 
 ## 📊 Sample Datasets
 
@@ -146,6 +203,8 @@ The app gracefully handles:
 
 ## 📦 Dependencies
 
+All dependencies are listed in `requirements.txt`:
+
 ```
 streamlit>=1.28.0
 pandas>=1.5.0
@@ -153,6 +212,20 @@ numpy>=1.23.0
 scikit-learn>=1.3.0
 plotly>=5.14.0
 ```
+
+For development, install with:
+```bash
+pip install -r requirements.txt
+```
+
+### Version Compatibility
+
+- **Python**: 3.8, 3.9, 3.10, 3.11
+- **Streamlit**: 1.28.0+
+- **scikit-learn**: 1.3.0+
+- **pandas**: 1.5.0+
+- **numpy**: 1.23.0+
+- **plotly**: 5.14.0+
 
 ## 🎯 Use Cases
 
@@ -190,6 +263,21 @@ Random Forest,0.9833,0.9833,0.9833,0.9833,0.9833,0.0178
 ...
 ```
 
+## 🎨 UI Features
+
+- **Light & Dark Mode** - Toggle between light and dark themes in the sidebar under "Appearance"
+- **Responsive Design** - Works seamlessly on desktop, tablet, and mobile browsers
+- **Interactive Charts** - Hover over visualizations for detailed metrics
+- **Real-time Updates** - Live progress indicators during model training
+- **Exportable Results** - Download analysis results in CSV format
+
+## ⚙️ Configuration
+
+### Theme Selection
+In the sidebar under "Appearance", you can toggle between:
+- **Light Mode** - Clean, bright interface for daytime use
+- **Dark Mode** - Easy on the eyes for extended sessions
+
 ## ⚠️ Limitations
 
 - Currently optimized for tabular CSV data
@@ -211,9 +299,16 @@ Random Forest,0.9833,0.9833,0.9833,0.9833,0.9833,0.0178
 - Class imbalance handling
 - GPU support for large datasets
 
-## 📞 Support
+## 📞 Support & Contact
 
 For issues or questions, please open an issue in the repository.
+
+---
+
+### 🔗 Links
+
+- **GitHub**: [github.com/Pujan-Dev](https://github.com/Pujan-Dev)
+- **Portfolio**: [neupanepujan.com.np](https://neupanepujan.com.np)
 
 ---
 
