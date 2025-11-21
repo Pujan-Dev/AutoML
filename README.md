@@ -135,7 +135,21 @@ Then visit `http://localhost:8501` in your browser.
    - Download detailed results as CSV
    - View comprehensive summary report with recommendations
 
-## 📊 Sample Datasets
+## � Screenshots
+
+### Main Interface
+![AutoML Main Interface](screenshot/s1.png)
+*Clean and intuitive interface for uploading and configuring your data*
+
+![AutoML Main Interface](screenshot/s2.png)
+*Clean and intuitive interface for uploading and configuring your data*
+![AutoML Main Interface](screenshot/s3.png)
+*Clean and intuitive interface for uploading and configuring your data*
+![AutoML Main Interface](screenshot/s4.png)
+*Clean and intuitive interface for uploading and configuring your data*
+
+
+## �📊 Sample Datasets
 
 sample datasets are :
 
