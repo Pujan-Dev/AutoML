@@ -77,13 +77,26 @@ st.markdown("---")
 # HELPER FUNCTIONS
 
 @st.cache_data
+@st.cache_data
 def load_data(file):
-    """Load CSV file safely"""
-    try:
-        return pd.read_csv(file)
-    except Exception as e:
-        st.error(f"Error loading file: {e}")
-        return None
+    """Load CSV file safely with multiple encoding attempts and auto-separator detection"""
+    encodings = ['utf-8', 'latin1', 'iso-8859-1', 'cp1252']
+    
+    for encoding in encodings:
+        try:
+            file.seek(0)
+            # engine='python' with sep=None allows auto-detection of delimiters (comma, semi-colon, tab)
+            return pd.read_csv(file, encoding=encoding, sep=None, engine='python')
+        except UnicodeDecodeError:
+            continue
+        except Exception as e:
+            # If it's not an encoding error, it might be a parsing error, try next encoding just in case
+            # or it might be a valid file that failed specifically with this encoding
+            continue
+            
+    # If all fail, show error
+    st.error("Could not decode file. Please ensure it is a valid CSV/Excel file (UTF-8, Latin-1, or CP1252 encoded).")
+    return None
 
 def detect_problem_type(y):
     """Detect if it's classification or regression"""
@@ -361,9 +374,20 @@ if uploaded_file:
              
             # 7. Split data
              
+
+            stratify_param = None
+            if problem_type == "classification":
+                # Check for rare classes that would break stratification
+                class_counts = y.value_counts()
+                if (class_counts < 2).any():
+                    st.warning("⚠️ Target classes with too few samples detected. Stratified splitting disabled.")
+                    stratify_param = None
+                else:
+                    stratify_param = y
+
             X_train, X_test, y_train, y_test = train_test_split(
                 X, y, test_size=0.2, random_state=42, 
-                stratify=y if problem_type == "classification" else None
+                stratify=stratify_param
             )
             
             st.success(f"✓ Train set: {X_train.shape[0]} | Test set: {X_test.shape[0]}")
